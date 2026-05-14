@@ -6,6 +6,11 @@ on:
   pull_request:
   workflow_dispatch:
 
+# Required so the auto-provisioned GITHUB_TOKEN can create releases.
+# Default for repos created after Sep 2024 is read-only.
+permissions:
+  contents: write
+
 jobs:
   build:
     name: Build debug APK
