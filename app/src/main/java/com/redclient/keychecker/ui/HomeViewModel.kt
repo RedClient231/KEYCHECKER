@@ -120,8 +120,9 @@ class HomeViewModel : ViewModel() {
 
         _state.update { it.copy(isLoading = true, activeOperation = op, result = null, message = null, canSubmit = false) }
 
+        val appContext = KeyCheckerApp.get().applicationContext
         viewModelScope.launch {
-            val client = StripeClient(publishableKey = pk, secretKey = sk)
+            val client = StripeClient(context = appContext, publishableKey = pk, secretKey = sk)
             val cardInput = StripeClient.CardInput(
                 number = s.card.number,
                 expMonth = s.card.expMonth.toInt(),
